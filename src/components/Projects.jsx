@@ -36,24 +36,24 @@ const ProjectCard = ({ image, title, description, link }) => (
 const listProjects = [
     {
         id: 1,
-        title: 'Project One',
-        description: 'A web application built with React and Node.js that allows users to track their tasks efficiently.',
-        image: project1,
-        link: ''
+        title: 'Guelmim Snacks Delivery',
+        description: 'A localized food ordering SPA built with React.js and Redux. Features include dynamic cart management, user authentication, and a modern UI designed in Figma.',
+        image: project1, 
+        link: 'https://github.com/ABDELMAJID18990/Guelmim-Snacks' 
     },
     {
         id: 2,
-        title: 'Project Two',
-        description: 'An e-commerce platform developed using Laravel and Vue.js, featuring a user-friendly interface and secure payment gateway.',
-        image: project2,
-        link: ''
+        title: 'Hotel Etoile du Desert',
+        description: 'A comprehensive hotel management system. Currently focused on advanced UML system architecture and high-fidelity Figma prototyping before full stack implementation.',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSorBsAcJvWsmTTBbRsbkfLTUYj15LrXBmNqg&s', 
+        link: '#' 
     },
     {
         id: 3,
-        title: 'Project Three',
-        description: 'A mobile app created with React Native that helps users manage their fitness routines and monitor progress.',
-        image: project3,
-        link: ''
+        title: 'Full Stack E-commerce',
+        description: 'A fully functional online store developed with Native PHP and MySQL. Includes an Admin Dashboard for product management and secure user sessions.',
+        image: project3, 
+        link: 'https://github.com/ABDELMAJID18990/ecommerce-website-avec-php-natif'
     },
 ];
 

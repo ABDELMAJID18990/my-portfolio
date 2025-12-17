@@ -1,55 +1,138 @@
-import imghero from '../assets/imghero.png';
+import { useRef } from "react";
+import emailjs from "@emailjs/browser";
+import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 
 export default function Contact() {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm("service_tk22kbj", "template_9kxqldl", form.current, {
+        publicKey: "w4kSGaZ-NNx5RM03d",
+      })
+      .then(
+        () => {
+          console.log("SUCCESS!");
+          alert("Message envoyé avec succès ! Je vous répondrai bientôt.");
+          e.target.reset();
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+          alert("Une erreur s'est produite, veuillez réessayer.");
+        }
+      );
+  };
+
   return (
-    <section
-      id='contact'
-      data-aos='fade-up'
-      data-aos-delay='300'
-      className='min-h-screen overflow-hidden justify-center flex items-center pt-6 mt-10 relative'>
-      <article className='shadow-lg rounded-lg flex flex-col md:flex-row max-w-4xl w-full relative'>
-        <aside className='w-full md:w-1/2 relative'>
-          <div className='absolute z-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px]
-          sm:w-[#400px] h-[300px] sm:h-[400px] rounded-full bg-gradient-to-r from-[#6d2897] via-[#8e6cf5]
-          to-[#bb61c5] shadow-[0_0_70px_rgba(182, 0, 182, 0, 7)]'></div>
-          <img
-            src={imghero}
-            alt='Contact illustration'
-            className='h-[250px] sm:h-[400px] md:h-[485px] w-[300px] sm:w-[480px] object-cover rounded-t-lg md:rounded-r-lg relative'
+    <section 
+      id='contact' 
+      className='py-16 px-6 min-h-screen flex flex-col justify-center bg-black/30 overflow-x-hidden'
+    >
+      
+      {/* Titre Principal */}
+      <div 
+        className='text-center mb-16' 
+        data-aos='fade-down' 
+        data-aos-delay='200'
+      >
+        <h2 className='text-5xl font-bold text-white relative inline-block'>
+          Get in <span className='text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600'>touch</span>
+        </h2>
+      </div>
+
+      <div className='max-w-6xl mx-auto w-full flex flex-col md:flex-row gap-12 lg:gap-20'>
+        
+        {/* COLONNE GAUCHE */}
+        <div 
+          className='flex-1 space-y-8' 
+          data-aos='fade-right' 
+          data-aos-delay='400'
+        >
+          <h3 className='text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent'>
+            Let's talk
+          </h3>
+          
+          <p className='text-gray-300 text-lg leading-relaxed max-w-md'>
+            I'm currently available to take on new projects, so feel free to send me a message about an internship or a project you want me to work on. You can contact anytime.
+          </p>
+
+          <div className='space-y-6 text-gray-200'>
+            
+            {/* Email */}
+            <div className='flex items-center gap-4 text-lg hover:text-purple-400 transition-colors'>
+              <FaEnvelope className='text-xl text-purple-500' />
+              <a href="mailto:abdelmajid.elainousi@gmail.com">abdelmajid.elainousi@gmail.com</a>
+            </div>
+
+            {/* Téléphone */}
+            <div className='flex items-center gap-4 text-lg hover:text-purple-400 transition-colors'>
+              <FaPhoneAlt className='text-xl text-purple-500' />
+              <a href="tel:+212670307897">+212 670-307897</a>
+            </div>
+
+            {/* Localisation */}
+            <div className='flex items-center gap-4 text-lg'>
+              <FaMapMarkerAlt className='text-xl text-purple-500' />
+              <span>Guelmim, Maroc</span>
+            </div>
+
+          </div>
+        </div>
+
+        {/* COLONNE DROITE  */}
+        <form 
+          ref={form} 
+          onSubmit={sendEmail} 
+          className='flex-1 flex flex-col gap-6'
+          data-aos='fade-left'
+          data-aos-delay='600'
+        >
+          
+          <div className='space-y-2'>
+            <label htmlFor="user_name" className='text-gray-300 font-medium'>Your Name</label>
+            <input 
+              type="text" 
+              name="user_name" 
+              placeholder='Enter your name' 
+              required
+              className='w-full bg-[#1a1a1a] border border-[#333] rounded-lg p-4 text-white focus:outline-none focus:border-purple-500 focus:bg-[#222] transition-all'
             />
-        </aside>
+          </div>
 
-        {/* Form Section */}
-        <section className='p-8 w-full md:w-1/2'>
-          <header className='mb-6'>
-            <h2 className='text-4xl font-bold text-center text-white'>Get in Touch</h2>
-          </header>
-          <form className='space-y-4'>
-            <div>
-              <label htmlFor='name' className='block text-gray-300 font-medium mb-2'>Name</label>
-              <input type='text' id='name' name='name' placeholder='Your name' 
-              className='w-full px-4 py-2 text-white bg-gray-900 rounded-lg focus:outline-none' />
-            </div>
-            <div>
-              <label htmlFor='email' className='block text-gray-300 font-medium mb-2'>Email</label>
-              <input type='email' id='email' name='email' placeholder='Your email' 
-              className='w-full px-4 py-2 text-white bg-gray-900 rounded-lg focus:outline-none' />
-            </div>
-            <div>
-              <label htmlFor='message' className='block text-gray-300 font-medium mb-2'>Message</label>
-              <textarea id='message' name='message' rows='4' placeholder='Your message' 
-              className='w-full px-4 py-2 text-white bg-gray-900 rounded-lg focus:outline-none'></textarea>
-            </div>
-            <button type='submit' 
-            className='w-full text-white border-3 py-2 px-6 focus:outline-none hover:bg-[#801b9c]
-            hover:shadow-[0_0_40px_rgba(128, 0, 128, 0, 7)] rounded-full text-lg cursor-pointer'
-            >Send Message</button>
-          </form>
-        </section>
+          <div className='space-y-2'>
+            <label htmlFor="user_email" className='text-gray-300 font-medium'>Your Email</label>
+            <input 
+              type="email" 
+              name="user_email" 
+              placeholder='Enter your email' 
+              required
+              className='w-full bg-[#1a1a1a] border border-[#333] rounded-lg p-4 text-white focus:outline-none focus:border-purple-500 focus:bg-[#222] transition-all'
+            />
+          </div>
 
-      </article>
+          <div className='space-y-2'>
+            <label htmlFor="message" className='text-gray-300 font-medium'>Write your message here</label>
+            <textarea 
+              name="message" 
+              rows="5" 
+              placeholder='Enter your message' 
+              required
+              className='w-full bg-[#1a1a1a] border border-[#333] rounded-lg p-4 text-white resize-none focus:outline-none focus:border-purple-500 focus:bg-[#222] transition-all'
+            ></textarea>
+          </div>
 
+          <button 
+            type='submit'
+            className='w-full md:w-auto self-start px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white font-bold text-lg hover:scale-105 transition-transform duration-300 shadow-lg shadow-purple-500/30 cursor-pointer'
+          >
+            Submit now
+          </button>
+
+        </form>
+
+      </div>
     </section>
-
   )
 }
