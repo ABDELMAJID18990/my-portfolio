@@ -4,7 +4,7 @@ import { TypeAnimation } from 'react-type-animation'; // Optionnel : pour l'anim
 import whatsapp from '../assets/whatsapp.png'; 
 import linkedin from '../assets/linkedin.png';
 import github from '../assets/github.png';
-import cv from '../assets/CV_2025-12-14_ABDELMAJID_ELAINOUSI.pdf';
+import cv from '../assets/CV_ABDELMAJID_ELAINOUSI.pdf';
 import myPhoto from "../assets/myPhoto.png"; 
 
 export default function Hero() {
