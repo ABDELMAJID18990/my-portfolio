@@ -13,7 +13,7 @@
 
 Welcome to my personal portfolio source code! This website was designed to showcase my skills as a **Full Stack Web Developer (Student)** and display my projects. It features a modern, responsive design with a cyberpunk/glassmorphism aesthetic, smooth animations, and a fully functional contact system.
 
-👉 **Live Demo:** [INSERT YOUR LIVE DEMO LINK HERE]
+👉 **Live Demo:** (https://elainousi-portfolio.vercel.app/)
 
 ---
 
