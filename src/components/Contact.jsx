@@ -69,7 +69,7 @@ export default function Contact() {
             {/* Téléphone */}
             <div className='flex items-center gap-4 text-lg hover:text-purple-400 transition-colors'>
               <FaPhoneAlt className='text-xl text-purple-500' />
-              <a href="tel:+212670307897">+212 670-307897</a>
+              <a href="tel:+212770307897">+212 770-307897</a>
             </div>
 
             {/* Localisation */}
