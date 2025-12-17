@@ -1,10 +1,8 @@
 import Navbar from './Navbar';
-import { TypeAnimation } from 'react-type-animation'; // Optionnel : pour l'animation du texte (npm i react-type-animation)
 
 import whatsapp from '../assets/whatsapp.png'; 
 import linkedin from '../assets/linkedin.png';
 import github from '../assets/github.png';
-import cv from '../assets/CV_ABDELMAJID_ELAINOUSI.pdf';
 import myPhoto from "../assets/myPhoto.png"; 
 
 export default function Hero() {
@@ -55,7 +53,7 @@ export default function Hero() {
             </div>
 
             <div className='flex justify-center md:justify-start'>
-                <a href={cv} download>
+                <a href="/CV_ABDELMAJID_ELAINOUSI.pdf" download="CV_Abdelmajid_Elainousi.pdf">
                     <button className='px-8 py-3 rounded-full text-white font-semibold text-lg
                     bg-gradient-to-r from-[#6d2897] to-[#bb61c5] border border-purple-500
                     hover:shadow-[0_0_30px_rgba(187,97,197,0.5)] hover:scale-105 transition-all duration-300 cursor-pointer'>
