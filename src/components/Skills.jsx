@@ -10,145 +10,77 @@ import css from "../assets/css.svg";
 import figma from "../assets/figma.svg";
 import git from "../assets/git.svg";
 import react from "../assets/react.svg";
-import imghero from "../assets/imghero.png";
 
 
-
+// --- DONNÉES ---
 const skillsData = [
-  {
-    id: 1,
-    image: laravel,
-    title: "Laravel",
-    description:
-      "Developing robust backend architectures and managing database relationships (Current learning).",
-  },
-  {
-    id: 2,
-    image: react,
-    title: "React JS",
-    description:
-      "Building dynamic Single Page Applications (SPA) with Hooks and component-based architecture.",
-  },
-  {
-    id: 3,
-    image: redux,
-    title: "Redux",
-    description:
-      "Managing global state complexity for features like authentication and shopping carts.",
-  },
-  {
-    id: 4,
-    image: tailwindcss,
-    title: "Tailwind CSS",
-    description:
-      "Designing responsive, mobile-first interfaces rapidly with modern utility classes.",
-  },
-  {
-    id: 5,
-    image: bootstrap,
-    title: "Bootstrap",
-    description:
-      "Building fast, responsive layouts using the grid system and pre-built components.",
-  },
-  {
-    id: 6,
-    image: javascript,
-    title: "JavaScript",
-    description:
-      "Adding interactivity, logic, and handling DOM manipulation with ES6+ standards.",
-  },
-  {
-    id: 7,
-    image: php,
-    title: "PHP",
-    description:
-      "Server-side scripting for dynamic web development and data processing.",
-  },
-  {
-    id: 8,
-    image: mysql,
-    title: "MySQL",
-    description:
-      "Designing relational database schemas and executing SQL queries for data management.",
-  },
-  {
-    id: 9,
-    image: html,
-    title: "HTML5",
-    description:
-      "Structuring web content with semantic tags and accessibility best practices.",
-  },
-  {
-    id: 10,
-    image: css,
-    title: "CSS3",
-    description:
-      "Styling web pages with modern layout techniques like Flexbox and Grid.",
-  },
-  {
-    id: 11,
-    image: figma,
-    title: "Figma",
-    description:
-      "Prototyping high-fidelity UI/UX designs and wireframes before coding.",
-  },
-  {
-    id: 12,
-    image: git,
-    title: "Git & GitHub",
-    description:
-      "Version control for tracking changes and collaborating on code repositories.",
-  },
+  { id: 1, image: react, title: "React JS", description: "Building dynamic SPA with Hooks, Context API, and component architecture." },
+  { id: 2, image: laravel, title: "Laravel", description: "Developing robust REST APIs, Eloquent ORM, and secure backend systems." },
+  { id: 3, image: redux, title: "Redux Toolkit", description: "Managing complex global state for scalable applications (Store, Slices)." },
+  { id: 4, image: tailwindcss, title: "Tailwind CSS", description: "Rapid UI development with modern utility-first CSS framework." },
+  { id: 5, image: javascript, title: "JavaScript (ES6+)", description: "Writing clean, asynchronous code (Promises, Async/Await)." },
+  { id: 6, image: php, title: "PHP", description: "Server-side scripting and object-oriented programming (OOP)." },
+  { id: 7, image: mysql, title: "MySQL", description: "Designing relational database schemas and optimizing SQL queries." },
+  { id: 8, image: figma, title: "Figma", description: "Prototyping high-fidelity UI/UX designs before coding." },
+  { id: 9, image: git, title: "Git & GitHub", description: "Version control, branching strategies, and team collaboration." },
+  { id: 10, image: html, title: "HTML5", description: "Semantic structuring and accessibility standards." },
+  { id: 11, image: css, title: "CSS3", description: "Animations, Grid, Flexbox, and responsive design techniques." },
+  { id: 12, image: bootstrap, title: "Bootstrap", description: "Utilizing grid system for quick responsive layouts." },
 ];
 
+// --- COMPOSANT CARTE UNITAIRE ---
 const SkillBox = ({ image, title, description }) => (
-  <article className="bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg text-center hover:bg-purple-800 transition-all duration-300">
-    <figure className="flex justify-center mb-4">
-      <img src={image} alt={title} className="w-16 h-16 sm:w-20 sm:h-20" />
+  <article 
+    className="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl shadow-xl text-center 
+    hover:border-purple-500 hover:-translate-y-2 hover:bg-white/10 transition-all duration-300 group"
+  >
+    <figure className="flex justify-center mb-4 h-20 items-center">
+      <img 
+        src={image} 
+        alt={title} 
+        className="w-16 h-16 object-contain group-hover:scale-110 transition-transform duration-300 drop-shadow-md" 
+      />
     </figure>
     <header>
-      <h3 className="text-lg sm:text-xl font-semibold mb-2">{title}</h3>
+      <h3 className="text-xl font-bold mb-2 text-white group-hover:text-purple-400 transition-colors">
+        {title}
+      </h3>
     </header>
-    <p className="text-gray-400 text-sm sm:text-base">{description}</p>
+    <p className="text-gray-400 text-sm leading-relaxed">
+      {description}
+    </p>
   </article>
 );
 
-function Skills() {
+// --- COMPOSANT PRINCIPAL ---
+export default function Skills() {
   return (
-    <section
-      id="skills"
-      className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center text-white px-4 py-10"
-    >
-      <div
-        className="absolute z-0 w-72 h-36 sm:w-96 sm:h-44 bg-[#cd3cf5] rounded-full blur-3xl opacity-50 top-10 sm:top-28
-        left-1/2 transform -translate-x-1/2"
-      ></div>
-      <img
-        src={imghero}
-        alt="left picture"
-        className="absolute z-10 left-2 top-2 sm:left-16 sm:top-32 transform -rotate-12 w-24 h-auto sm:w-32 opacity-70"
-      />
+    <section id="skills" className="relative min-h-screen bg-gray-950 py-20 px-6 overflow-hidden">
+      
+      {/* Background Decor (Lueur centrale) */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-purple-600/20 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
 
-      <div
-        data-aos="fade-up"
-        data-aos-delay="300"
-        className="relative z-30 text-center space-y-6 sm:space-y-10"
-      >
-        <header>
-          <h1 className="text-3xl sm:text-4xl font bold">
-            My Experise <br /> and{" "}
-            <span className="text-purple-400">Skills</span>
-          </h1>
-          <p className="text-gray-400 mt-2 sm:mt-4 text-sm sm:text-base">
-            I possess a diverse skill set that enables me to create dynamic and
-            responsive web applications. Here are some of the technologies and
-            tools I excel in:
+      {/* Décoration image (Optionnel) */}
+      {/* <img src={imghero} alt="decor" className="absolute top-20 left-10 w-32 opacity-20 -rotate-12 blur-sm animate-pulse" /> */}
+
+      <div className="max-w-7xl mx-auto">
+        
+        {/* Titre Section */}
+        <header className="text-center mb-16 space-y-4" data-aos="fade-up">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-white">
+            My <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">Expertise</span>
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+            I combine creativity and code to build functional and aesthetic solutions. 
+            Here is the tech stack I use to bring ideas to life.
           </p>
         </header>
-        <section
-          data-aos="fade-up"
-          data-aos-delay="500"
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-4"
+
+        {/* Grille des compétences */}
+        <div 
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+          data-aos="fade-up" 
+          data-aos-delay="200"
         >
           {skillsData.map((skill) => (
             <SkillBox
@@ -158,15 +90,9 @@ function Skills() {
               description={skill.description}
             />
           ))}
-        </section>
+        </div>
+
       </div>
-      <img
-        src={imghero}
-        alt="right picture"
-        className="absolute z-10 right-2 top-2 sm:right-16 sm:top-32 transform rotate-12 w-24 h-auto sm:w-32 opacity-70"
-      />
     </section>
   );
 }
-
-export default Skills;

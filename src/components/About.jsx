@@ -2,72 +2,84 @@ import img_about1 from "../assets/img_about1.png";
 import img_about2 from "../assets/img_about2.png";
 import img_about from "../assets/img_about.png";
 
-function About() {
+export default function About() {
   return (
     <section
       id="about"
-      className="min-h-screen overflow-hidden flex items-center justify-center text-white px-4 sm:px-6"
+      className="relative min-h-screen flex items-center justify-center bg-gray-950 py-20 px-6 overflow-hidden"
     >
-      <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8  sm:gap-12 items-center">
+      {/* Background Decor (Lueur légère en bas) */}
+      <div className='absolute bottom-0 right-0 w-96 h-96 bg-purple-600/10 rounded-full blur-[120px] -z-10 pointer-events-none'></div>
+
+      <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        
+        {/* --- COLONNE GAUCHE : IMAGES COMPOSITION --- */}
         <figure
           data-aos="fade-right"
-          data-aos-delay="500"
-          className="flex flex-wrap justify-center gap-4 relative lg:justify-start"
+          data-aos-delay="300"
+          className="relative flex justify-center lg:justify-start min-h-[400px]"
         >
-          <div
-            className="h-[200px] sm:h-[300px] w-[300px] sm:w-[400px] lg:h-[300px] lg:w-[500px] bg-gradient-to-l
-                    from-[#6d2897] via-[#6c95f5] to-[#bb61c5] absolute transform rotate-12 z-0 right-5 top-2 
-                    md:top-10 rounded-full"
-          ></div>
+          {/* Forme arrière-plan abstraite */}
+          <div className="absolute top-10 left-10 w-72 h-72 sm:w-96 sm:h-96 bg-gradient-to-tr from-purple-900 to-pink-900 rounded-full blur-2xl opacity-40 animate-pulse"></div>
+
+          {/* Image 1 (Petit haut gauche) */}
           <img
             src={img_about1}
-            alt="about picture 1"
-            className="absolute -top-2 left-5 sm:left-10 transform -translate-y-12 z-20 w-24 h-24 sm:w-32 sm:h-32
-                    rounded-3xl shadow-lg"
+            alt="coding icon"
+            className="absolute top-0 left-0 w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-2xl shadow-xl shadow-purple-900/30 border border-white/10 z-20 hover:scale-110 transition-transform duration-300"
           />
+          
+          {/* Image 2 (Centrale principale) */}
           <img
             src={img_about2}
-            alt="about picture 2"
-            className="relative z-10 w-36 h-44 sm:w-40 sm:h-40 md:w-72 md:h-96 rounded-lg shadow-lg "
+            alt="developer working"
+            className="relative z-10 w-48 h-64 sm:w-64 sm:h-80 lg:w-72 lg:h-96 object-cover rounded-xl shadow-2xl border-4 border-gray-900 ml-12 mt-8"
           />
+          
+          {/* Image 3 (Bas droite) */}
           <img
             src={img_about}
-            alt="about picture "
-            className="absolute bottom-0 right-5 sm:right-10 transform translate-y-12 z-10 w-20 h-20 sm:w-32 
-                        sm:h-32 rounded-3xl shadow-lg"
+            alt="tech stack"
+            className="absolute bottom-10 right-10 sm:right-20 lg:right-32 w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-2xl shadow-xl border border-white/10 z-20 hover:scale-110 transition-transform duration-300"
           />
         </figure>
+
+        {/* --- COLONNE DROITE : TEXTE --- */}
         <article
-          className="text-center lg:text-left relative"
+          className="text-center lg:text-left relative z-10"
           data-aos="fade-left"
           data-aos-delay="500"
         >
-          <div
-            className="absolute z-0 w-40 sm:w-60 sm:h-60 bg[#cd3cf5] rounded-full blur-3xl opacity-50 
-                    -top-5 left-10"
-          ></div>
+          {/* Petite ligne décorative */}
+          <div className="w-16 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mb-6 mx-auto lg:mx-0 rounded-full"></div>
+
           <header>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
-              About Me
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">
+              About <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">Me</span>
             </h1>
           </header>
-          <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-6 sm:mb-8 leading-relaxed">
-            I am a final-year Full Stack Web Development student at ISTA NTIC
-            Guelmim, driven by a passion for building robust and scalable web
-            applications. With solid proficiency in React.js for the frontend
-            and Laravel for the backend, I strive to bridge the gap between
-            complex logic and user-friendly design. Disciplined, curious, and
-            adaptable, I am actively seeking an End-of-Studies Internship (Stage
-            PFE) to bring value to a dynamic tech team and launch my
-            professional career.{" "}
-          </p>
-          <footer>
-            
-          </footer>
+
+          <div className="space-y-4 text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed font-light">
+            <p>
+              I am a final-year <strong className="text-white font-semibold">Full Stack Web Development</strong> student at ISTA NTIC Guelmim, driven by a passion for building robust and scalable applications.
+            </p>
+            <p>
+              With solid proficiency in <span className="text-blue-400 font-bold">React.js</span> for the frontend and <span className="text-red-500 font-bold">Laravel</span> for the backend, I bridge the gap between complex logic and intuitive user experiences.
+            </p>
+            <p>
+              Disciplined, curious, and adaptable, I am actively seeking an <span className="text-white border-b-2 border-purple-500 pb-0.5">End-of-Studies Internship (Stage PFE)</span> to bring value to a dynamic tech team and launch my professional career.
+            </p>
+          </div>
+
+          <div className="mt-8 flex justify-center lg:justify-start gap-6 items-center">
+            <a href="#projects" className="group flex items-center text-purple-400 font-medium hover:text-white transition-colors duration-300">
+                <span>View my projects</span>
+                <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+          </div>
+
         </article>
       </div>
     </section>
   );
 }
-
-export default About;
