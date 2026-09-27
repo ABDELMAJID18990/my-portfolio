@@ -42,15 +42,7 @@ const listProjects = [
     link: "https://github.com/ABDELMAJID18990/Maison-etoile-du-desert-statique",
    tech: ["React.js", "Tailwind CSS", "React-i18next", "Lucide Icons", "Serverless / Static"],
   },
-  {
-    id: 3,
-    title: "Full Stack E-commerce",
-    description:
-      "A fully functional multi-vendor online store developed from scratch. Implements a MVC architecture with Native PHP and MySQL. Includes a comprehensive Admin Dashboard for product management and secure user sessions.",
-    image: project3,
-    link: "https://github.com/ABDELMAJID18990/ecommerce-website-avec-php-natif",
-    tech: ["PHP Native", "MySQL", "Bootstrap 5"],
-  },
+  
   
   
 ];
