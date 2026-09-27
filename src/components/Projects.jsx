@@ -1,5 +1,8 @@
 import project1 from "../assets/project1.png";
+import project2 from "../assets/project2.png";
 import project3 from "../assets/project3.png";
+import project4 from "../assets/project4.png";
+import project5 from "../assets/project5.png";
 
 const listProjects = [
   {
@@ -15,11 +18,29 @@ const listProjects = [
     id: 2,
     title: "Hotel Etoile du Désert",
     description:
-      "An advanced Hotel Management System currently in active development. I am architecting a modern solution combining React.js for a dynamic client-side interface and a secure Laravel API to handle complex booking logic and data persistence.",
+      "A complete and tailored reservation system for a boutique desert guesthouse. Features a seamless React.js Frontend for an optimized user experience, powered by a robust Laravel API that handles real-time booking logic, automated pricing, and secure dashboard management.",
     image:
-      "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=1000&auto=format&fit=crop",
-    link: "#",
-    tech: ["🚧 In Development", "React.js", "Laravel 12", "UML/Figma"],
+      project2,
+    link: "https://github.com/ABDELMAJID18990/Maison-etoile-du-desert",
+    tech: ["React.js", "Laravel 12", "UML/Figma"],
+  },
+  
+  {
+  id: 5,
+  title: "CRIMATI - IT Asset & Helpdesk Platform",
+  description: "A robust Intranet platform designed for IT asset tracking and helpdesk management. Built with a scalable Laravel MVC architecture, it features a dynamic JSON-based schema for flexible equipment specifications, automated ticket workflows, and strict Role-Based Access Control (RBAC). The responsive and interactive UI is powered by Tailwind CSS and Alpine.js.",
+  image: project5, 
+  link: "https://github.com/Ali-AB23/crimati", // À modifier avec ton vrai lien
+  tech: ["Laravel", "Alpine.js", "Tailwind CSS", "MySQL", "Docker"],
+},
+  {
+    id: 4,
+    title: "Hotel Etoile du Désert (Version statique)",
+    description:
+      "A premium static web application designed for a Saharan boutique hotel. Built with React.js, Tailwind CSS, and i18next for a bilingual (FR/EN) experience. Optimized for speed and conversion, it replaces a traditional backend with a dynamic, frictionless WhatsApp reservation flow tailored for mobile users.",
+    image: project4,
+    link: "https://github.com/ABDELMAJID18990/Maison-etoile-du-desert-statique",
+   tech: ["React.js", "Tailwind CSS", "React-i18next", "Lucide Icons", "Serverless / Static"],
   },
   {
     id: 3,
@@ -30,6 +51,8 @@ const listProjects = [
     link: "https://github.com/ABDELMAJID18990/ecommerce-website-avec-php-natif",
     tech: ["PHP Native", "MySQL", "Bootstrap 5"],
   },
+  
+  
 ];
 
 const ProjectCard = ({ image, title, description, link, tech }) => (

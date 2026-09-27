@@ -63,7 +63,7 @@ export default function Hero() {
                 
                 <p className='text-gray-400 text-lg md:text-xl font-light mt-4 max-w-lg mx-auto md:mx-0'>
                     Building robust and scalable web applications. <br/>
-                    Student & Freelancer <span className="text-purple-500 font-bold">|</span> Open to PFE Internship.
+                    Student & Freelancer <span className="text-purple-500 font-bold">|</span> Open to Internship.
                 </p>
             </header>
 

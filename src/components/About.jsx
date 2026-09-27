@@ -67,7 +67,7 @@ export default function About() {
               With solid proficiency in <span className="text-blue-400 font-bold">React.js</span> for the frontend and <span className="text-red-500 font-bold">Laravel</span> for the backend, I bridge the gap between complex logic and intuitive user experiences.
             </p>
             <p>
-              Disciplined, curious, and adaptable, I am actively seeking an <span className="text-white border-b-2 border-purple-500 pb-0.5">End-of-Studies Internship (Stage PFE)</span> to bring value to a dynamic tech team and launch my professional career.
+              Disciplined, curious, and adaptable, I am actively seeking an <span className="text-white border-b-2 border-purple-500 pb-0.5">End-of-Studies Internship (Stage)</span> to bring value to a dynamic tech team and launch my professional career.
             </p>
           </div>
 

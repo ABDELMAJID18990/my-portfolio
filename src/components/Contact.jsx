@@ -60,7 +60,7 @@ export default function Contact() {
               <span className='text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600'>great together</span>
             </h2>
             <p className='text-gray-400 text-lg leading-relaxed max-w-lg'>
-              I'm currently available for an **End-of-Studies Internship (PFE)**. 
+              I'm currently available for an **End-of-Studies Internship**. 
               Whether you have a question or just want to say hi, I'll try my best to get back to you!
             </p>
           </header>
