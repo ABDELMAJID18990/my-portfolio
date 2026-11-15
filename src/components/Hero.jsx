@@ -50,8 +50,8 @@ export default function Hero() {
               Voir mes projets
             </a>
             <a
-              href="/CV_ABDELMAJID_ELAINOUSI.pdf"
-              download="CV_Abdelmajid_Elainousi.pdf"
+              href="/CV_Abdelmajid_Elainousi_Dev_FullStack.pdf"
+              download="CV_Abdelmajid_Elainousi_Dev_FullStack.pdf"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-ink/20 font-semibold
               hover:border-accent hover:text-accent active:scale-95 transition"
             >
