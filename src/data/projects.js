@@ -1,7 +1,7 @@
-import snacksImg from "../assets/project1.png";
-import hotelImg from "../assets/project2.png";
-import hotelStaticImg from "../assets/project4.png";
-import crimatiImg from "../assets/project5.png";
+import snacksImg from "../assets/project1.webp";
+import hotelImg from "../assets/project2.webp";
+import hotelStaticImg from "../assets/project4.webp";
+import crimatiImg from "../assets/project5.webp";
 
 export const projects = [
   {
