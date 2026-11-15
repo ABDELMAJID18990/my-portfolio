@@ -1,8 +1,68 @@
 @import "tailwindcss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "@fontsource-variable/bricolage-grotesque";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/jetbrains-mono";
 
-html{
+@theme {
+  --font-display: "Bricolage Grotesque Variable", system-ui, sans-serif;
+  --font-sans: "Inter Variable", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+
+  --color-sand-50: #FBF7F0;
+  --color-sand-100: #F4EDE0;
+  --color-sand-200: #E8DCC8;
+  --color-ink: #1F1A14;
+  --color-muted: #6B6256;
+  --color-accent: #B8481F;
+  --color-accent-soft: #F6E3D8;
+
+  /* Animations du Hero */
+  --animate-rise: rise 0.7s ease-out both;
+  --animate-draw-underline: draw-underline 0.8s ease-out 0.9s forwards;
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: none; }
+  }
+  @keyframes draw-underline {
+    to { background-size: 100% 0.3em; }
+  }
+}
+
+@layer base {
+  html {
     scroll-behavior: smooth;
+    scroll-padding-top: 5rem; /* la navbar ne cache plus les titres */
+  }
+  body { @apply bg-sand-50 text-ink font-sans antialiased; }
+  h1, h2, h3 { @apply font-display tracking-tight; }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+}
+
+/* Apparition au scroll (utilisée par <Reveal />) */
+@layer components {
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Accessibilité : on coupe tout si l'utilisateur le demande */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, ::before, ::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .reveal { opacity: 1; transform: none; }
 }

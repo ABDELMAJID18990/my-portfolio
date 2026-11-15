@@ -1,196 +1,129 @@
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaPaperPlane } from "react-icons/fa";
+import { FaEnvelope, FaWhatsapp, FaLinkedin, FaPaperPlane } from "react-icons/fa";
+import SectionHeading from "./SectionHeading";
+
+const WHATSAPP_URL = `https://wa.me/212770307897?text=${encodeURIComponent(
+  "Bonjour Abdelmajid, j'ai découvert votre portfolio et j'aimerais échanger avec vous."
+)}`;
+
+const channels = [
+  { Icon: FaWhatsapp, label: "WhatsApp", value: "+212 770-307897", href: WHATSAPP_URL, external: true },
+  { Icon: FaEnvelope, label: "E-mail", value: "abdelmajid.elainousi@gmail.com", href: "mailto:abdelmajid.elainousi@gmail.com" },
+  {
+    Icon: FaLinkedin,
+    label: "LinkedIn",
+    value: "abdelmajid-el-ainousi",
+    href: "https://www.linkedin.com/in/abdelmajid-el-ainousi-b2b187298/",
+    external: true,
+  },
+];
+
+const fieldClass =
+  "w-full bg-white border border-sand-200 rounded-xl px-4 py-3 text-ink placeholder:text-muted/60 " +
+  "focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition";
 
 export default function Contact() {
-  const form = useRef();
-  const [isSending, setIsSending] = useState(false);
-  const [notification, setNotification] = useState(null); // Pour le message de succès/échec
+  const form = useRef(null);
+  const [status, setStatus] = useState("idle"); // idle | sending | success | error
 
-  // Fonction pour afficher une notification temporaire
-  const showNotification = (message, type) => {
-    setNotification({ message, type });
-    setTimeout(() => {
-      setNotification(null);
-    }, 5000);
-  };
-
-  const sendEmail = (e) => {
+  const sendEmail = async (e) => {
     e.preventDefault();
-    setIsSending(true);
-
-    emailjs
-      .sendForm("service_tk22kbj", "template_9kxqldl", form.current, {
-        publicKey: "w4kSGaZ-NNx5RM03d",
-      })
-      .then(
-        () => {
-          showNotification("Message sent successfully! I'll reply soon.", "success");
-          e.target.reset();
-          setIsSending(false);
-        },
-        (error) => {
-          console.error("FAILED...", error);
-          showNotification("Failed to send message. Please try again.", "error");
-          setIsSending(false);
-        }
+    setStatus("sending");
+    try {
+      await emailjs.sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        form.current,
+        { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY }
       );
+      form.current.reset();
+      setStatus("success");
+    } catch (error) {
+      console.error("EmailJS error:", error);
+      setStatus("error");
+    }
   };
 
   return (
-    <section 
-      id='contact' 
-      className='py-20 px-6 min-h-screen flex flex-col justify-center bg-gray-950 relative overflow-hidden'
-    >
-        
-      {/* Background Decor */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-purple-900/20 rounded-full blur-[120px] pointer-events-none -translate-y-1/2"></div>
-
-      <div className='max-w-7xl mx-auto w-full flex flex-col md:flex-row gap-12 lg:gap-20 items-start relative z-10'>
-        
-        {/* --- COLONNE GAUCHE (Infos) --- */}
-        <div 
-          className='flex-1 space-y-10' 
-          data-aos='fade-right' 
-          data-aos-delay='200'
+    <section id="contact" className="bg-sand-100 py-24 px-6 md:px-12">
+      <div className="max-w-6xl mx-auto">
+        <SectionHeading
+          number="04"
+          label="Contact"
+          title="Travaillons ensemble"
         >
-          <header>
-            <h2 className='text-5xl font-extrabold text-white mb-6 leading-tight'>
-              Let's build something <br/> 
-              <span className='text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600'>great together</span>
-            </h2>
-            <p className='text-gray-400 text-lg leading-relaxed max-w-lg'>
-              I'm currently available for an **End-of-Studies Internship**. 
-              Whether you have a question or just want to say hi, I'll try my best to get back to you!
-            </p>
-          </header>
+          Je recherche un stage de développeur Full Stack (React / Laravel). Une question, une proposition ?
+          Écrivez-moi, je réponds rapidement.
+        </SectionHeading>
 
-          <div className='space-y-8'>
-            
-            {/* Email Card */}
-            <div className='flex items-center gap-5 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-purple-500/50 transition-colors group cursor-pointer'>
-              <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center text-purple-400 group-hover:text-white group-hover:bg-purple-600 transition-all">
-                <FaEnvelope className='text-xl' />
-              </div>
-              <div>
-                <h4 className="text-gray-400 text-sm font-medium">Email Me</h4>
-                <a href="mailto:abdelmajid.elainousi@gmail.com" className="text-white font-semibold text-lg hover:text-purple-400 transition-colors">
-                    abdelmajid.elainousi@gmail.com
-                </a>
-              </div>
-            </div>
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-start">
+          {/* Coordonnées */}
+          <div className="space-y-4">
+            {channels.map(({ Icon, label, value, href, external }) => (
+              <a
+                key={label}
+                href={href}
+                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                className="group flex items-center gap-4 p-4 rounded-2xl bg-sand-50 border border-sand-200 hover:border-accent transition-colors"
+              >
+                <span className="grid place-items-center size-12 rounded-full bg-accent-soft text-accent group-hover:bg-accent group-hover:text-white transition-colors">
+                  <Icon className="text-xl" />
+                </span>
+                <span className="min-w-0">
+                  <span className="block font-mono text-xs text-muted">{label}</span>
+                  <span className="block font-semibold truncate">{value}</span>
+                </span>
+              </a>
+            ))}
 
-            {/* Phone Card */}
-            <div className='flex items-center gap-5 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-purple-500/50 transition-colors group cursor-pointer'>
-              <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center text-purple-400 group-hover:text-white group-hover:bg-purple-600 transition-all">
-                <FaPhoneAlt className='text-xl' />
-              </div>
-              <div>
-                <h4 className="text-gray-400 text-sm font-medium">Call Me</h4>
-                <a href="tel:+212770307897" className="text-white font-semibold text-lg hover:text-purple-400 transition-colors">
-                    +212 770-307897
-                </a>
-              </div>
-            </div>
+            <p className="font-mono text-sm text-muted pt-2">Errachidia, Maroc</p>
 
-            {/* Location Card */}
-            <div className='flex items-center gap-5 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-purple-500/50 transition-colors group cursor-pointer'>
-              <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center text-purple-400 group-hover:text-white group-hover:bg-purple-600 transition-all">
-                <FaMapMarkerAlt className='text-xl' />
-              </div>
-              <div>
-                <h4 className="text-gray-400 text-sm font-medium">Location</h4>
-                <p className="text-white font-semibold text-lg">Guelmim, Maroc (Mobile)</p>
-              </div>
-            </div>
-
+            {/* Bandeau freelance discret */}
+            <aside className="mt-6 p-5 rounded-2xl border border-dashed border-accent/40 bg-accent-soft/50">
+              <p className="font-mono text-xs text-accent">Missions freelance</p>
+              <p className="mt-1 text-sm text-ink/80">
+                Je prends aussi des missions pour hôtels, restaurants et commerces : site vitrine, réservation,
+                commande en ligne.
+              </p>
+            </aside>
           </div>
-        </div>
 
-        {/* --- COLONNE DROITE (Formulaire) --- */}
-        <form 
-          ref={form} 
-          onSubmit={sendEmail} 
-          className='flex-1 w-full bg-white/5 p-8 sm:p-10 rounded-3xl border border-white/10 shadow-2xl relative'
-          data-aos='fade-left'
-          data-aos-delay='400'
-        >
-          {/* Lueur formulaire */}
-          <div className="absolute inset-0 bg-gradient-to-b from-purple-500/10 to-transparent rounded-3xl pointer-events-none"></div>
-
-          <h3 className="text-2xl font-bold text-white mb-8 relative z-10">Send a Message</h3>
-          
-          <div className='flex flex-col gap-6 relative z-10'>
-            
-            {/* Input Nom */}
-            <div className="relative group">
-                <input 
-                  type="text" 
-                  name="user_name" 
-                  placeholder='Your Name' 
-                  required
-                  className='w-full bg-black/40 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:bg-black/60 transition-all peer'
-                />
+          {/* Formulaire */}
+          <form ref={form} onSubmit={sendEmail} className="bg-sand-50 border border-sand-200 rounded-3xl p-6 sm:p-8 space-y-5">
+            <div>
+              <label htmlFor="user_name" className="block text-sm font-medium mb-1.5">Nom</label>
+              <input id="user_name" name="user_name" type="text" required autoComplete="name" className={fieldClass} placeholder="Votre nom" />
+            </div>
+            <div>
+              <label htmlFor="user_email" className="block text-sm font-medium mb-1.5">E-mail</label>
+              <input id="user_email" name="user_email" type="email" required autoComplete="email" className={fieldClass} placeholder="vous@exemple.com" />
+            </div>
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium mb-1.5">Message</label>
+              <textarea id="message" name="message" rows="5" required className={`${fieldClass} resize-none`} placeholder="Votre message..." />
             </div>
 
-            {/* Input Email */}
-            <div className="relative group">
-                <input 
-                  type="email" 
-                  name="user_email" 
-                  placeholder='Your Email Address' 
-                  required
-                  className='w-full bg-black/40 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:bg-black/60 transition-all'
-                />
-            </div>
-
-            {/* Textarea */}
-            <div className="relative group">
-                <textarea 
-                  name="message" 
-                  rows="5" 
-                  placeholder='Write your message here...' 
-                  required
-                  className='w-full bg-black/40 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-gray-500 resize-none focus:outline-none focus:border-purple-500 focus:bg-black/60 transition-all'
-                ></textarea>
-            </div>
-
-            {/* Submit Button */}
-            <button 
-              type='submit'
-              disabled={isSending}
-              className={`w-full py-4 rounded-xl text-white font-bold text-lg flex items-center justify-center gap-2
-              transition-all duration-300 shadow-lg 
-              ${isSending 
-                ? 'bg-gray-600 cursor-not-allowed opacity-70' 
-                : 'bg-gradient-to-r from-purple-600 to-pink-600 hover:scale-[1.02] hover:shadow-purple-500/40 cursor-pointer'
-              }`}
+            <button
+              type="submit"
+              disabled={status === "sending"}
+              className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-full bg-accent text-white font-semibold
+              hover:bg-ink transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              {isSending ? (
-                <>Sending...</>
-              ) : (
-                <>Send Message <FaPaperPlane className="text-sm" /></>
-              )}
+              {status === "sending" ? "Envoi en cours..." : <>Envoyer <FaPaperPlane className="text-sm" /></>}
             </button>
 
-          </div>
-        </form>
-
-      </div>
-
-      {/* --- NOTIFICATION TOAST --- */}
-      {notification && (
-        <div 
-            className={`fixed bottom-10 right-10 px-6 py-4 rounded-xl shadow-2xl border flex items-center gap-3 z-50 animate-bounce
-            ${notification.type === 'success' 
-                ? 'bg-green-900/90 border-green-500 text-white' 
-                : 'bg-red-900/90 border-red-500 text-white'}`}
-        >
-            {notification.type === 'success' ? '✅' : '❌'}
-            <p className="font-medium">{notification.message}</p>
+            <p role="status" aria-live="polite" className="text-sm min-h-5">
+              {status === "success" && <span className="text-green-700">✓ Message envoyé, merci ! Je vous réponds rapidement.</span>}
+              {status === "error" && (
+                <span className="text-red-700">
+                  L'envoi a échoué. Écrivez-moi directement à abdelmajid.elainousi@gmail.com.
+                </span>
+              )}
+            </p>
+          </form>
         </div>
-      )}
-
+      </div>
     </section>
-  )
+  );
 }

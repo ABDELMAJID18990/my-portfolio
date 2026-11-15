@@ -1,101 +1,119 @@
-# 👨‍💻 Full Stack Developer Portfolio
+# Portfolio · Abdelmajid El Ainousi
 
-![Portfolio Preview](./public/preview.png)
+Portfolio de développeur Full Stack (React & Laravel). Il présente mes projets, mon parcours et mes compétences, avec une identité visuelle inspirée du Sud marocain.
 
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
-![EmailJS](https://img.shields.io/badge/EmailJS-F6C23E?style=for-the-badge&logo=gmail&logoColor=white)
+🔗 **En ligne : [elainousi-portfolio.vercel.app](https://elainousi-portfolio.vercel.app/)**
 
-> **"Turning complex ideas into functional digital reality."**
+![Aperçu du portfolio](public/preview.PNG)
 
-## 🚀 Overview
+## Objectifs de conception
 
-Welcome to my personal portfolio source code! This website was designed to showcase my skills as a **Full Stack Web Developer (Student)** and display my projects. It features a modern, responsive design with a cyberpunk/glassmorphism aesthetic, smooth animations, and a fully functional contact system.
+- **Lisibilité d'abord :** un recruteur doit comprendre qui je suis et ce que je sais faire en moins de 10 secondes.
+- **Projets en preuve :** chaque projet précise le contexte, ma contribution, les points techniques et le lien vers le code.
+- **Identité sobre :** palette sable et terre cuite, une seule couleur d'accent, typographie expressive.
+- **Accessibilité :** HTML sémantique, navigation au clavier, contrastes vérifiés, respect de `prefers-reduced-motion`.
+- **Performance :** aucune dépendance d'animation lourde, images optimisées et chargées en différé.
 
-👉 **Live Demo:** (https://elainousi-portfolio.vercel.app/)
+## Stack technique
+
+| Domaine | Choix |
+|---|---|
+| Framework | React 19 (Vite) |
+| Style | Tailwind CSS v4 (design tokens dans `@theme`) |
+| Typographie | Bricolage Grotesque, Inter, JetBrains Mono (`@fontsource`, auto-hébergées) |
+| Icônes | React Icons |
+| Formulaire de contact | EmailJS |
+| Animations | CSS natif + `IntersectionObserver` (composant `Reveal`) |
+| Déploiement | Vercel |
+
+> Adapte la version de React à celle de ton `package.json`.
+
+## Fonctionnalités
+
+- Sections : Hero, Projets, Parcours, Compétences, Contact
+- Projets pilotés par un fichier de données (`src/data/projects.js`) : ajouter un projet = ajouter un objet
+- Animations d'apparition au scroll, désactivées automatiquement si l'utilisateur le demande
+- Formulaire de contact avec validation et retour d'état accessible (`aria-live`)
+- Lien WhatsApp avec message pré-rempli
+- SEO complet : balises Open Graph, Twitter Card, données structurées JSON-LD, `robots.txt`, `sitemap.xml`
+
+## Structure du projet
+
+```
+src/
+├── components/
+│   ├── Navbar.jsx
+│   ├── Hero.jsx
+│   ├── Projects.jsx
+│   ├── About.jsx          # Parcours (timeline)
+│   ├── Skills.jsx
+│   ├── Contact.jsx
+│   ├── Footer.jsx
+│   ├── SectionHeading.jsx # titre de section réutilisable
+│   └── Reveal.jsx         # animation d'apparition au scroll
+├── data/
+│   └── projects.js
+├── assets/
+├── App.jsx
+├── index.css              # design tokens (@theme) et styles de base
+└── main.jsx
+public/                    # favicon, og-image, CV, robots.txt, sitemap.xml
+```
+
+## Lancer le projet en local
+
+```bash
+git clone https://github.com/ABDELMAJID18990/[NOM-DU-REPO].git
+cd [NOM-DU-REPO]
+npm install
+cp .env.example .env.local
+npm run dev
+```
+
+Le site est disponible sur `http://localhost:5173`.
+
+### Variables d'environnement
+
+Le formulaire de contact utilise [EmailJS](https://www.emailjs.com/). Renseigne tes identifiants dans `.env.local` :
+
+```
+VITE_EMAILJS_SERVICE_ID=
+VITE_EMAILJS_TEMPLATE_ID=
+VITE_EMAILJS_PUBLIC_KEY=
+```
+
+Sans ces variables, le reste du site fonctionne, mais l'envoi du formulaire échoue.
+
+### Scripts
+
+| Commande | Action |
+|---|---|
+| `npm run dev` | Serveur de développement |
+| `npm run build` | Build de production |
+| `npm run preview` | Prévisualiser le build |
+| `npm run lint` | Vérifier le code avec ESLint |
+
+## Déploiement
+
+Le site est déployé sur Vercel, avec déploiement automatique à chaque `push` sur `main`. Les trois variables `VITE_EMAILJS_*` sont définies dans *Settings → Environment Variables*.
+
+## Performances
+
+Scores Lighthouse (mobile) : **[À COMPLÉTER après ton test]**
+
+## Projets présentés
+
+- **CRIMATI** : gestion du matériel IT et helpdesk (projet d'équipe, stage)
+- **Hôtel Étoile du Désert** : plateforme de réservation complète (React + Laravel)
+- **Hôtel Étoile du Désert, version légère** : site statique bilingue avec réservation WhatsApp
+- **Guelmim Snacks** : plateforme Click & Collect (React + Laravel)
+
+## Contact
+
+- 📧 abdelmajid.elainousi@gmail.com
+- 💼 [LinkedIn](https://www.linkedin.com/in/abdelmajid-el-ainousi-b2b187298/)
+- 🐙 [GitHub](https://github.com/ABDELMAJID18990)
 
 ---
 
-## ✨ Key Features
-
-*   **🎨 Modern UI/UX:** Built with **Tailwind CSS**, featuring dark mode aesthetics, gradients, and glassmorphism effects.
-*   **📱 Fully Responsive:** Optimized for all devices (Mobile, Tablet, Desktop).
-*   **✉️ Functional Contact Form:** Integrated with **EmailJS** to send messages directly to my inbox without a backend server.
-*   **✨ Smooth Animations:** Powered by **AOS (Animate On Scroll)** and `react-type-animation` for dynamic text effects.
-*   **👤 3D Avatar:** Integration of AI-generated 3D character art for a unique personal branding.
-
----
-
-## 🛠️ Tech Stack
-
-### Core
-*   **Framework:** React.js (Vite)
-*   **Language:** JavaScript (ES6+)
-*   **Styling:** Tailwind CSS
-
-### Libraries & Tools
-*   **Routing:** React Scroll (Single Page Navigation)
-*   **Animations:** AOS, React Type Animation
-*   **Icons:** React Icons (Fa, Si)
-*   **Communication:** EmailJS
-*   **Design:** Figma (for prototyping)
-
----
-
-## 📂 Featured Projects
-
-These are the main projects highlighted in the portfolio:
-
-1.  **🍔 Guelmim Snacks Delivery:** A localized food ordering App (React/Redux).
-2.  **🏨 Hôtel Étoile du Désert:** A hotel management system (UML/Figma/Laravel).
-3.  **🛒 E-Commerce Shop:** A full-stack online store (PHP Native/MySQL).
-
----
-
-## 💻 Installation & Setup
-
-If you want to run this project locally, follow these steps:
-
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/ABDELMAJID18990/portfolio-2025.git
-    ```
-
-2.  **Navigate to the project directory:**
-    ```bash
-    cd portfolio-2025
-    ```
-
-3.  **Install dependencies:**
-    ```bash
-    npm install
-    ```
-
-4.  **Setup Environment Variables (for EmailJS):**
-    *   Create a file named `.env` in the root directory.
-    *   Add your EmailJS keys (optional if you want the contact form to work):
-    ```env
-    VITE_EMAILJS_SERVICE_ID=your_service_id
-    VITE_EMAILJS_TEMPLATE_ID=your_template_id
-    VITE_EMAILJS_PUBLIC_KEY=your_public_key
-    ```
-
-5.  **Run the development server:**
-    ```bash
-    npm run dev
-    ```
-
----
-
-## 📬 Contact Me
-
-I am currently open to **PFE Internship opportunities** in Full Stack Development (React/Laravel).
-
-*   **LinkedIn:** [Abdelmajid El ainousi](https://www.linkedin.com/in/abdelmajid-el-ainousi-b2b187298/)
-*   **Email:** abdelmajid.elainousi@gmail.com
-*   **Location:** Guelmim, Morocco
-
----
-
-*© 2025 Abdelmajid El ainousi. All rights reserved.*
+© Abdelmajid El Ainousi. Le code est visible à titre de démonstration. Merci de ne pas copier le contenu ni l'identité visuelle à l'identique.

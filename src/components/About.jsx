@@ -1,84 +1,93 @@
-import img_about1 from "../assets/img_about1.png";
-import img_about2 from "../assets/img_about2.png";
-import img_about from "../assets/img_about.png";
+import SectionHeading from "./SectionHeading";
+
+const timeline = [
+  {
+    period: "Mars – Avr. 2026",
+    title: "Stagiaire Développeur Full Stack & Support IT",
+    org: "Centre Régional d'Investissement de Guelmim-Oued Noun",
+    type: "Stage",
+    points: [
+      "Conception d'un intranet de gestion du matériel et d'un système de ticketing (helpdesk) pour suivre et résoudre les incidents techniques.",
+      "Développement Full Stack avec Laravel 12, MySQL, Tailwind CSS et Alpine.js, accès sécurisés par rôles (RBAC).",
+      "Travail en équipe de 3 développeurs en méthode Agile (Jira / Git), application conteneurisée avec Docker.",
+    ],
+  },
+  {
+    period: "Depuis oct. 2026",
+    title: "Licence d'Excellence en Informatique Appliquée à la Gestion",
+    org: "Faculté d'Économie et de Gestion, Errachidia",
+    type: "Formation",
+    points: ["Génie logiciel (Java/C++, Web, bases de données) et Business Intelligence."],
+  },
+  {
+    period: "2024 – 2026",
+    title: "Technicien Spécialisé en Développement Digital (option Full Stack)",
+    org: "ISTA NTIC, Guelmim",
+    type: "Formation",
+    points: ["Front-end et back-end, avec une approche par projets pratiques (4 applications Full Stack)."],
+  },
+];
+
+const languages = [
+  { name: "Arabe", level: "langue maternelle" },
+  { name: "Français", level: "B1" },
+  { name: "Anglais", level: "B1" },
+];
 
 export default function About() {
   return (
-    <section
-      id="about"
-      className="relative min-h-screen flex items-center justify-center bg-gray-950 py-20 px-6 overflow-hidden"
-    >
-      {/* Background Decor (Lueur légère en bas) */}
-      <div className='absolute bottom-0 right-0 w-96 h-96 bg-purple-600/10 rounded-full blur-[120px] -z-10 pointer-events-none'></div>
+    <section id="about" className="bg-sand-100 py-24 px-6 md:px-12">
+      <div className="max-w-6xl mx-auto">
+        <SectionHeading number="02" label="Parcours" title="Un profil Full Stack, formé par la pratique" />
 
-      <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-        
-        {/* --- COLONNE GAUCHE : IMAGES COMPOSITION --- */}
-        <figure
-          data-aos="fade-right"
-          data-aos-delay="300"
-          className="relative flex justify-center lg:justify-start min-h-[400px]"
-        >
-          {/* Forme arrière-plan abstraite */}
-          <div className="absolute top-10 left-10 w-72 h-72 sm:w-96 sm:h-96 bg-gradient-to-tr from-purple-900 to-pink-900 rounded-full blur-2xl opacity-40 animate-pulse"></div>
-
-          {/* Image 1 (Petit haut gauche) */}
-          <img
-            src={img_about1}
-            alt="coding icon"
-            className="absolute top-0 left-0 w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-2xl shadow-xl shadow-purple-900/30 border border-white/10 z-20 hover:scale-110 transition-transform duration-300"
-          />
-          
-          {/* Image 2 (Centrale principale) */}
-          <img
-            src={img_about2}
-            alt="developer working"
-            className="relative z-10 w-48 h-64 sm:w-64 sm:h-80 lg:w-72 lg:h-96 object-cover rounded-xl shadow-2xl border-4 border-gray-900 ml-12 mt-8"
-          />
-          
-          {/* Image 3 (Bas droite) */}
-          <img
-            src={img_about}
-            alt="tech stack"
-            className="absolute bottom-10 right-10 sm:right-20 lg:right-32 w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-2xl shadow-xl border border-white/10 z-20 hover:scale-110 transition-transform duration-300"
-          />
-        </figure>
-
-        {/* --- COLONNE DROITE : TEXTE --- */}
-        <article
-          className="text-center lg:text-left relative z-10"
-          data-aos="fade-left"
-          data-aos-delay="500"
-        >
-          {/* Petite ligne décorative */}
-          <div className="w-16 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mb-6 mx-auto lg:mx-0 rounded-full"></div>
-
-          <header>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">
-              About <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">Me</span>
-            </h1>
-          </header>
-
-          <div className="space-y-4 text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed font-light">
+        <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-12 lg:gap-20">
+          {/* Présentation */}
+          <div className="space-y-5 text-lg text-muted leading-relaxed">
             <p>
-              I am a final-year <strong className="text-white font-semibold">Full Stack Web Development</strong> student at ISTA NTIC Guelmim, driven by a passion for building robust and scalable applications.
+              Je suis étudiant en <strong className="text-ink">Licence d'Excellence en Informatique Appliquée à la
+              Gestion</strong> et diplômé en développement digital (option Full Stack) de l'ISTA NTIC Guelmim.
             </p>
             <p>
-              With solid proficiency in <span className="text-blue-400 font-bold">React.js</span> for the frontend and <span className="text-red-500 font-bold">Laravel</span> for the backend, I bridge the gap between complex logic and intuitive user experiences.
+              Je construis des applications complètes : maquettes <strong className="text-ink">Figma</strong>,
+              interface <strong className="text-ink">React</strong>, API sécurisée{" "}
+              <strong className="text-ink">Laravel</strong>, conteneurisation <strong className="text-ink">Docker</strong>.
             </p>
             <p>
-              Disciplined, curious, and adaptable, I am actively seeking an <span className="text-white border-b-2 border-purple-500 pb-0.5">End-of-Studies Internship (Stage)</span> to bring value to a dynamic tech team and launch my professional career.
+              Rigoureux, curieux et à l'aise en équipe, j'apprends vite et je cherche un stage pour contribuer à des
+              projets concrets.
             </p>
+
+            <ul className="flex flex-wrap gap-2 pt-2">
+              {languages.map((l) => (
+                <li key={l.name} className="font-mono text-xs px-3 py-1.5 rounded-full bg-sand-50 border border-sand-200 text-ink">
+                  {l.name} · <span className="text-muted">{l.level}</span>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <div className="mt-8 flex justify-center lg:justify-start gap-6 items-center">
-            <a href="#projects" className="group flex items-center text-purple-400 font-medium hover:text-white transition-colors duration-300">
-                <span>View my projects</span>
-                <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-            </a>
-          </div>
-
-        </article>
+          {/* Timeline */}
+          <ol className="relative border-l border-sand-200 ml-1.5 space-y-10">
+            {timeline.map((item) => (
+              <li key={item.title} className="relative pl-8">
+                <span className="absolute -left-[6.5px] top-2 size-3 rounded-full bg-accent ring-4 ring-sand-100" />
+                <p className="font-mono text-xs text-accent">
+                  {item.period} · {item.type}
+                </p>
+                <h3 className="text-xl font-bold mt-1">{item.title}</h3>
+                <p className="text-ink/80 font-medium">{item.org}</p>
+                <ul className="mt-3 space-y-2">
+                  {item.points.map((p) => (
+                    <li key={p} className="flex gap-2 text-muted">
+                      <span className="text-accent">▹</span>
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ol>
+        </div>
       </div>
     </section>
   );

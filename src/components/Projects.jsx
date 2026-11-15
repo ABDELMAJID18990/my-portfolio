@@ -1,153 +1,139 @@
-import project1 from "../assets/project1.png";
-import project2 from "../assets/project2.png";
-import project3 from "../assets/project3.png";
-import project4 from "../assets/project4.png";
-import project5 from "../assets/project5.png";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import SectionHeading from "./SectionHeading";
+import { projects } from "../data/projects";
+import Reveal from "./Reveal";
 
-const listProjects = [
-  {
-    id: 1,
-    title: "Guelmim Snacks Delivery",
-    description:
-      "A scalable Food Delivery SPA designed with a decoupled architecture. Features a reactive Frontend using React.js & Redux Toolkit for complex global state management (Cart, Auth), connected to a robust Laravel RESTful API backend.",
-    image: project1,
-    link: "https://github.com/ABDELMAJID18990/Guelmim-Snacks",
-    tech: ["React.js", "Redux Toolkit", "Laravel API", "SPA"],
-  },
-  {
-    id: 2,
-    title: "Hotel Etoile du Désert",
-    description:
-      "A complete and tailored reservation system for a boutique desert guesthouse. Features a seamless React.js Frontend for an optimized user experience, powered by a robust Laravel API that handles real-time booking logic, automated pricing, and secure dashboard management.",
-    image:
-      project2,
-    link: "https://github.com/ABDELMAJID18990/Maison-etoile-du-desert",
-    tech: ["React.js", "Laravel 12", "UML/Figma"],
-  },
-  
-  {
-  id: 5,
-  title: "CRIMATI - IT Asset & Helpdesk Platform",
-  description: "A robust Intranet platform designed for IT asset tracking and helpdesk management. Built with a scalable Laravel MVC architecture, it features a dynamic JSON-based schema for flexible equipment specifications, automated ticket workflows, and strict Role-Based Access Control (RBAC). The responsive and interactive UI is powered by Tailwind CSS and Alpine.js.",
-  image: project5, 
-  link: "https://github.com/Ali-AB23/crimati", // À modifier avec ton vrai lien
-  tech: ["Laravel", "Alpine.js", "Tailwind CSS", "MySQL", "Docker"],
-},
-  {
-    id: 4,
-    title: "Hotel Etoile du Désert (Version statique)",
-    description:
-      "A premium static web application designed for a Saharan boutique hotel. Built with React.js, Tailwind CSS, and i18next for a bilingual (FR/EN) experience. Optimized for speed and conversion, it replaces a traditional backend with a dynamic, frictionless WhatsApp reservation flow tailored for mobile users.",
-    image: project4,
-    link: "https://github.com/ABDELMAJID18990/Maison-etoile-du-desert-statique",
-   tech: ["React.js", "Tailwind CSS", "React-i18next", "Lucide Icons", "Serverless / Static"],
-  },
-  
-  
-  
-];
+const btnPrimary =
+  "inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent text-white text-sm font-semibold hover:bg-ink transition-colors";
+const btnSecondary =
+  "inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-ink/20 text-sm font-semibold hover:border-accent hover:text-accent transition-colors";
 
-const ProjectCard = ({ image, title, description, link, tech }) => (
-  <article className="group relative max-w-sm w-full bg-gray-900 border border-white/10 rounded-2xl overflow-hidden shadow-2xl transition-all duration-300 hover:border-purple-500/50 hover:shadow-purple-500/20">
-    {/* Effet Glow au survol */}
-    <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
-
-    <div className="relative z-10 bg-gray-900 h-full flex flex-col">
-      {/* Image Container */}
-      <figure className="relative h-56 overflow-hidden">
-        <img
-          src={image}
-          alt={title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-        />
-
-        {/* Overlay au survol */}
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="absolute inset-0 bg-black/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-        >
-          <span className="px-6 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-full shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-            View Code &rarr;
-          </span>
-        </a>
-      </figure>
-
-      {/* Contenu Texte */}
-      <div className="p-6 flex flex-col flex-grow">
-        <header>
-          <h3 className="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
-            {title}
-          </h3>
-        </header>
-
-        {/* CORRECTION ICI : J'ai enlevé 'line-clamp-3' pour afficher tout le texte */}
-        {/* J'ai ajouté 'text-justify' pour que le bloc de texte soit bien aligné à gauche et à droite */}
-        <p className="text-gray-400 text-sm mb-6 leading-relaxed text-justify">
-          {description}
-        </p>
-
-        {/* Badges Technologies */}
-        {/* 'mt-auto' pousse les badges tout en bas de la carte, peu importe la longueur du texte */}
-        <div className="flex flex-wrap gap-2 mt-auto">
-          {tech.map((t, index) => (
-            <span
-              key={index}
-              className="text-xs font-medium px-2.5 py-1 rounded-md bg-purple-900/30 text-purple-300 border border-purple-700/50"
-            >
-              {t}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
-  </article>
+const Status = ({ online }) => (
+  <p className="flex items-center gap-2 font-mono text-xs text-muted">
+    <span className={`size-2 rounded-full ${online ? "bg-green-600" : "bg-muted/50"}`} />
+    {online ? "En ligne" : "Non hébergé · démo possible en entretien"}
+  </p>
 );
 
-export default function Projects() {
+const TechList = ({ items }) => (
+  <ul className="flex flex-wrap gap-2">
+    {items.map((t) => (
+      <li key={t} className="font-mono text-xs px-2.5 py-1 rounded-md bg-accent-soft text-accent">
+        {t}
+      </li>
+    ))}
+  </ul>
+);
+
+const Highlights = ({ items }) => (
+  <ul className="space-y-1.5">
+    {items.map((h) => (
+      <li key={h} className="flex gap-2 text-sm text-muted">
+        <span className="text-accent">▹</span>
+        {h}
+      </li>
+    ))}
+  </ul>
+);
+
+const Actions = ({ demo, repo, repoLabel = "Code source" }) => (
+  <div className="flex flex-wrap gap-3">
+    {demo && (
+      <a href={demo} target="_blank" rel="noopener noreferrer" className={btnPrimary}>
+        Voir en ligne <FaExternalLinkAlt className="text-xs" />
+      </a>
+    )}
+    {repo && (
+      <a
+        href={repo}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={demo ? btnSecondary : btnPrimary}
+      >
+        <FaGithub /> {repoLabel}
+      </a>
+    )}
+  </div>
+);
+
+const Screenshot = ({ image, title }) => (
+  <figure className="aspect-video overflow-hidden rounded-2xl border border-sand-200 bg-sand-50">
+    <img
+      src={image}
+      alt={`Aperçu du projet ${title}`}
+      loading="lazy"
+      className="size-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+    />
+  </figure>
+);
+
+function FeaturedProject({ p }) {
   return (
-    <section
-      id="projects"
-      className="relative min-h-screen bg-gray-950 py-20 px-4 sm:px-6"
-    >
-      {/* Décoration Arrière-plan */}
-      <div className="absolute top-20 right-0 w-96 h-96 bg-pink-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+    <Reveal>
+      <article className="group grid lg:grid-cols-[1.1fr_0.9fr] gap-8 items-center p-5 md:p-8 rounded-3xl bg-sand-100 border border-sand-200">
+         <Screenshot image={p.image} title={p.title} />
+      <div className="space-y-4">
+        <p className="font-mono text-xs text-accent">{p.badge}</p>
+        <h3 className="text-2xl md:text-3xl font-bold">{p.title}</h3>
+        <p className="text-ink/80">{p.tagline}</p>
+        <p className="text-sm text-muted">
+          <span className="font-semibold text-ink">Contexte : </span>{p.context}
+        </p>
+        <p className="text-sm text-muted">
+          <span className="font-semibold text-ink">Ma contribution : </span>{p.role}
+        </p>
+        <Highlights items={p.highlights} />
+        <TechList items={p.tech} />
+        <Status online={Boolean(p.demo)} />
+        <Actions demo={p.demo} repo={p.repo} repoLabel={p.repoLabel} />
+      </div>
+      </article>
+    </Reveal>
+  );
+}
 
-      <div className="max-w-7xl mx-auto">
-        {/* Header Section */}
-        <header
-          className="text-center mb-16"
-          data-aos="fade-up"
-          data-aos-delay="200"
-        >
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4">
-            My{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-              Projects
-            </span>
-          </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Showcasing my journey through code. Here are the key projects that
-            demonstrate my Full Stack capabilities.
-          </p>
-        </header>
 
-        {/* Grid Projects */}
-        <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center"
-          data-aos="fade-up"
-          data-aos-delay="400"
-        >
-          {listProjects.map((project) => (
-            <ProjectCard
-              key={project.id}
-              image={project.image}
-              title={project.title}
-              description={project.description}
-              link={project.link}
-              tech={project.tech}
-            />
+function ProjectCard({ p, index }) {
+  return (
+    <Reveal delay={index * 100} className="h-full">
+      <article
+        className="group flex h-full flex-col gap-4 p-5 rounded-3xl bg-sand-100 border border-sand-200
+        hover:-translate-y-1 hover:border-accent/50 transition-all duration-300"
+      >
+        <Screenshot image={p.image} title={p.title} />
+      <p className="font-mono text-xs text-accent">{p.badge}</p>
+      <h3 className="text-xl font-bold -mt-2">{p.title}</h3>
+      <p className="text-sm text-ink/80">{p.tagline}</p>
+      <Highlights items={p.highlights} />
+      <div className="mt-auto space-y-4 pt-2">
+        <TechList items={p.tech} />
+        <Status online={Boolean(p.demo)} />
+        <Actions demo={p.demo} repo={p.repo} repoLabel={p.repoLabel} />
+      </div>
+      </article>
+    </Reveal>
+  );
+}
+
+
+
+export default function Projects() {
+  const featured = projects.find((p) => p.featured);
+  const others = projects.filter((p) => !p.featured);
+
+  return (
+    <section id="projects" className="bg-sand-50 py-24 px-6 md:px-12">
+      <div className="max-w-6xl mx-auto">
+        <SectionHeading number="01" label="Projets" title="Des applications complètes, de bout en bout">
+          Quatre projets Full Stack. Le code est sur GitHub, et les applications qui nécessitent un serveur
+          peuvent être présentées en direct lors d'un entretien.
+        </SectionHeading>
+
+        {featured && <FeaturedProject p={featured} />}
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+          {others.map((p, i) => (
+            <ProjectCard key={p.id} p={p} index={i} />
           ))}
         </div>
       </div>

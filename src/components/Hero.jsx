@@ -1,129 +1,117 @@
-import { TypeAnimation } from 'react-type-animation';
-import Navbar from './Navbar';
+import { FaDownload, FaGithub, FaLinkedin } from "react-icons/fa";
+import myPhoto from "../assets/myphoto.webp";
 
-import whatsapp from '../assets/whatsapp.png';
-import linkedin from '../assets/linkedin.png';
-import github from '../assets/github.png';
-import myPhoto from "../assets/myPhoto.png"; 
+const pattern = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%23B8481F' stroke-opacity='.22'%3E%3Crect x='12' y='12' width='36' height='36'/%3E%3Crect x='12' y='12' width='36' height='36' transform='rotate(45 30 30)'/%3E%3C/g%3E%3C/svg%3E")`;
+
+const proofs = [
+  { value: "4", label: "projets Full Stack" },
+  { value: "1", label: "stage professionnel" },
+  { value: "React · Laravel", label: "stack principale" },
+];
 
 export default function Hero() {
-
-  // Données des réseaux sociaux pour éviter la répétition de code
-  const socialLinks = [
-    { id: 1, href: "https://github.com/ABDELMAJID18990", icon: github, alt: "github" },
-    { id: 2, href: "https://www.linkedin.com/in/abdelmajid-el-ainousi-b2b187298/", icon: linkedin, alt: "linkedin" },
-    { id: 3, href: "https://wa.me/212770307897", icon: whatsapp, alt: "whatsapp" }, // J'ai remis le format marocain standard (2126...)
-  ];
-
   return (
-    <section id='home' className='relative overflow-hidden min-h-screen flex flex-col items-center bg-gray-950'>
-      
-      {/* --- BACKGROUND DECORATION --- */}
-      <div className="absolute hidden md:block w-[500px] h-[500px] bg-gradient-to-r from-purple-900 via-purple-700 to-pink-900 
-        rounded-[40px] transform rotate-45 blur-3xl opacity-30 z-0 -right-20 top-20 animate-pulse">
-      </div>
+    <section id="home" className="bg-sand-50 px-6 md:px-12">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-[1.2fr_0.8fr] gap-12 items-center min-h-screen py-24">
+        {/* ---------- Texte ---------- */}
+        <div>
+          <span className="animate-rise inline-flex items-center gap-2 font-mono text-xs px-3 py-1.5 rounded-full bg-accent-soft text-accent">
+            <span className="size-2 rounded-full bg-accent animate-pulse" />
+            Ouvert aux opportunités de stage
+          </span>
 
-      <Navbar />
+          <p className="animate-rise [animation-delay:100ms] font-mono text-sm text-muted mt-8">
+            Abdelmajid El Ainousi · Développeur Full Stack · Errachidia, Maroc
+          </p>
 
-      {/* --- CONTENU PRINCIPAL --- */}
-      <main className='flex flex-col-reverse md:flex-row items-center justify-center w-full px-6 md:px-20 lg:px-40 
-        pb-10 pt-28 md:pt-36 gap-10 z-10 max-w-7xl mx-auto'>
-        
-        {/* --- COLONNE GAUCHE : TEXTE --- */}
-        <div className='flex-1 text-center md:text-left relative' data-aos="fade-right" data-aos-delay="500">
-            
-            {/* Lueur derrière le texte */}
-            <div className='absolute -z-10 w-40 h-40 bg-purple-600 rounded-full blur-3xl opacity-20 -top-10 -left-10'></div>
-            
-            <header className='space-y-4'>
-                <h2 className='text-lg md:text-xl font-bold text-purple-400 tracking-widest uppercase mb-2'>
-                    Hello, I am
-                </h2>
-                
-                <h1 className='text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight'>
-                    Abdelmajid <br className='hidden md:block'/> El ainousi
-                </h1>
-                
-                {/* Animation Typewriter */}
-                <div className='text-xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 h-16 md:h-auto'>
-                  <TypeAnimation
-                    sequence={[
-                      'Full Stack Web Developer',
-                      2000,
-                      'React.js Specialist',
-                      2000,
-                      'Laravel Developer',
-                      2000
-                    ]}
-                    wrapper="span"
-                    speed={50}
-                    repeat={Infinity}
-                  />
-                </div>
-                
-                <p className='text-gray-400 text-lg md:text-xl font-light mt-4 max-w-lg mx-auto md:mx-0'>
-                    Building robust and scalable web applications. <br/>
-                    Student & Freelancer <span className="text-purple-500 font-bold">|</span> Open to Internship.
-                </p>
-            </header>
+          <h1 className="animate-rise [animation-delay:200ms] text-5xl md:text-7xl font-extrabold leading-[1.05] mt-4">
+            Des applications web{" "}
+            <span
+              className="text-accent animate-draw-underline bg-no-repeat bg-bottom bg-[length:0%_0.3em]
+              bg-[linear-gradient(var(--color-accent-soft),var(--color-accent-soft))]"
+            >
+              complètes
+            </span>
+            , du design à la mise en production.
+          </h1>
 
-            {/* Icones Réseaux Sociaux (Mappées) */}
-            <div className='flex items-center justify-center md:justify-start space-x-6 my-8'>
-                {socialLinks.map((social) => (
-                    <a 
-                        key={social.id} 
-                        href={social.href} 
-                        target='_blank' 
-                        rel='noopener noreferrer' 
-                        className='group transition-transform duration-300 hover:-translate-y-2'
-                    >
-                        <img 
-                            src={social.icon} 
-                            alt={social.alt} 
-                            className='w-11 h-11 filter hover:brightness-125 hover:drop-shadow-[0_0_8px_rgba(168,85,247,0.5)] transition-all' 
-                        />
-                    </a>
-                ))}
-            </div>
+          <p className="animate-rise [animation-delay:300ms] text-lg text-muted mt-6 max-w-xl">
+            React &amp; Laravel. J'ai réalisé 4 projets Full Stack, dont une
+            plateforme de ticketing et de gestion de matériel développée en
+            équipe lors de mon stage au Centre Régional d'Investissement de
+            Guelmim-Oued Noun.
+          </p>
 
-            {/* Bouton Download CV */}
-            <div className='flex justify-center md:justify-start'>
-                <a href="/CV_ABDELMAJID_ELAINOUSI.pdf" download="CV_Abdelmajid_Elainousi.pdf">
-                    <button className='px-8 py-3 rounded-full text-white font-bold text-lg
-                    bg-gradient-to-r from-purple-600 to-pink-600 
-                    border-2 border-transparent hover:border-white
-                    shadow-lg shadow-purple-500/30 hover:shadow-purple-500/60
-                    transform hover:scale-105 transition-all duration-300 cursor-pointer'>
-                        Download CV
-                    </button>
-                </a>
-            </div>
+          <div className="animate-rise [animation-delay:400ms] flex flex-wrap gap-3 mt-8">
+            <a
+              href="#projects"
+              className="px-7 py-3 rounded-full bg-accent text-white font-semibold hover:bg-ink active:scale-95 transition"
+            >
+              Voir mes projets
+            </a>
+            <a
+              href="/CV_ABDELMAJID_ELAINOUSI.pdf"
+              download="CV_Abdelmajid_Elainousi.pdf"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-ink/20 font-semibold
+              hover:border-accent hover:text-accent active:scale-95 transition"
+            >
+              <FaDownload /> Mon CV
+            </a>
+          </div>
+
+          <div className="animate-rise [animation-delay:500ms] flex items-center gap-5 mt-8 text-2xl text-muted">
+            <a
+              href="https://github.com/ABDELMAJID18990"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="hover:text-accent transition-colors"
+            >
+              <FaGithub />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/abdelmajid-el-ainousi-b2b187298/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="hover:text-accent transition-colors"
+            >
+              <FaLinkedin />
+            </a>
+          </div>
+
+          <dl className="animate-rise [animation-delay:600ms] flex flex-wrap gap-x-10 gap-y-4 mt-10 pt-6 border-t border-sand-200">
+            {proofs.map((p) => (
+              <div key={p.label}>
+                <dt className="font-display text-xl font-bold">{p.value}</dt>
+                <dd className="font-mono text-xs text-muted">{p.label}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
 
-        {/* --- COLONNE DROITE : IMAGE / AVATAR --- */}
-        <figure className='flex-1 flex justify-center items-center relative' data-aos='zoom-in' data-aos-delay='600'>
-            
-            {/* Grand cercle néon arrière */}
-            <div className="absolute w-[280px] h-[280px] md:w-[450px] md:h-[450px] bg-purple-600 rounded-full blur-[90px] opacity-30 animate-pulse"></div>
-            
-            {/* Cadre de l'image */}
-            <div className="relative w-[260px] h-[260px] sm:w-[320px] sm:h-[320px] md:w-[400px] md:h-[400px] 
-                 p-1 rounded-full bg-gradient-to-b from-purple-500 via-pink-500 to-transparent shadow-2xl">
-                
-                <div className="w-full h-full rounded-full overflow-hidden bg-gray-900 border-4 border-white/5 relative">
-                    <img 
-                        src={myPhoto} 
-                        alt="Abdelmajid Avatar" 
-                        className='w-full h-full object-cover object-center transform translate-y-3 hover:scale-110 transition-transform duration-700 ease-in-out' 
-                    />
-                </div>
-                
-                
-            </div>
+        {/* ---------- Photo ---------- */}
+        <figure className="animate-rise [animation-delay:300ms] relative isolate mx-auto w-full max-w-[340px]">
+          {/* Contour décalé : donne de la profondeur */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 translate-x-3 translate-y-3 rounded-t-[999px] rounded-b-3xl border-2 border-accent/30 -z-10"
+          />
 
+          {/* Cadre unique : il découpe l'image et porte le motif */}
+          <div
+            className="relative aspect-[4/5] overflow-hidden rounded-t-[999px] rounded-b-3xl bg-sand-100 border border-sand-200"
+            style={{ backgroundImage: pattern }}
+          >
+            <img
+              src={myPhoto}
+              alt="Portrait d'Abdelmajid El Ainousi, développeur Full Stack"
+              fetchPriority="high"
+              className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[105%] max-w-none h-auto"
+            />
+          </div>
         </figure>
-
-      </main>
+      </div>
     </section>
-  )
+  );
 }

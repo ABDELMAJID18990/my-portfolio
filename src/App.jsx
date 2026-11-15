@@ -1,33 +1,35 @@
-import {useEffect} from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import Projects from "./components/Projects";
+import About from "./components/About";
+import Skills from "./components/Skills";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
-import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
 
-
-function App() {
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-    });
-  },[])
-
+export default function App() {
+  AOS.init({
+    duration: 600,
+    easing: "ease-out",
+    once: true,
+    offset: 60,
+    disable: () =>
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  });
   return (
-    <main className='bg-gray-950'>
-      <Hero />
-      <About/>
-      <Skills/>
-      <Projects/>
-      <Contact/>
-      <Footer/>
-    </main>
-
-  )
+    <>
+      <Navbar />
+      <main>
+        <Hero />
+        <Projects />
+        <About />
+        <Skills />
+        <Contact />
+      </main>
+      <Footer />
+    </>
+  );
 }
-
-export default App
